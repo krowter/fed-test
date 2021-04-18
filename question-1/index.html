@@ -10,8 +10,47 @@
   <body>
     <main>
       <section id="card-preview" class="container">
-        <div id="card-preview__card"></div>
-        <form id="card-preview__form"></form>
+        <div id="card-preview__card">
+          <div id="card-preview__card-header">
+            <img id="card-preview__chip" src="./assets/chip.svg" />
+            <img id="card-preview__logo" />
+          </div>
+          <div id="card-preview__card-body">
+            <span>card number</span>
+            <span id="card-preview__card-number"></span>
+          </div>
+          <div id="card-preview__card-footer">
+            <div>
+              <span>cardholder name</span>
+              <span id="card-preview__card-owner"></span>
+            </div>
+            <div>
+              <span>expiration</span>
+              <span>VALID THRU ></span>
+              <span id="card-preview__card-expiration"></span>
+            </div>
+          </div>
+        </div>
+        <form id="card-preview__form">
+          <div>
+            <label for="owner">Name</label>
+            <input id="owner" name="owner" />
+          </div>
+          <div>
+            <label for="number">Card Number</label>
+            <input id="number" name="number" />
+          </div>
+          <div>
+            <div>
+              <label for="expiration">Expiration (mm/yy)</label>
+              <input id="expiration" name="expiration" />
+            </div>
+            <div>
+              <label for="securitycode">Security Code</label>
+              <input id="securitycode" name="securitycode" type="password" />
+            </div>
+          </div>
+        </form>
       </section>
     </main>
     <script src="./script.js"></script>

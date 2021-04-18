@@ -1,10 +1,25 @@
-window.onload = () => {
-  const card = document.getElementById("card-preview__card");
-  drawCardBackground(card);
-  createCardElements(card);
+// for easier lookup and consistent variable naming
+const CARD = {
+  CARD: "card-preview__card",
+  FORM: "card-preview__form",
+  BACKGROUND: "card-preview__card-background",
+  NUMBER: "card-preview__card-number",
+  OWNER: "card-preview__card-owner",
+  EXPIRATION: "card-preview__card-expiration",
 };
 
-//helper functions
+window.onload = () => {
+  const initialValues = {
+    NUMBER: "xxxxxxxxxxxxxxxx",
+    OWNER: "xxxxx xxxxx",
+    EXPIRATION: "xxxx",
+  };
+
+  const card = document.getElementById(CARD.CARD);
+
+  drawCardBackground(card);
+  setupFormInputs();
+};
 
 // handle all styling (colors) from css
 const getCSSColor = (variableName) =>
@@ -15,7 +30,7 @@ const drawCardBackground = (card) => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
-  canvas.setAttribute("id", "card-preview__card-background");
+  canvas.setAttribute("id", CARD.BACKGROUND);
   canvas.width = 400;
   canvas.height = 300;
 
@@ -29,4 +44,42 @@ const drawCardBackground = (card) => {
   ctx.fill();
 
   card.style.backgroundImage = `url(${canvas.toDataURL("image/png")})`;
+};
+
+const setupFormInputs = () => {
+  const { number, expiration, securitycode } = document.getElementById(
+    CARD.FORM
+  ).elements;
+
+  // 16 digits + 3 separators
+  number.maxLength = 19;
+  number.addEventListener(
+    "keyup",
+    ({ target }) =>
+      (target.value = chunkString(
+        target.value.replace(/\D/g, "").slice(0, 16),
+        4
+      ).join("-"))
+  );
+
+  // 4 digits + 1 separator
+  expiration.maxLength = 5;
+  expiration.addEventListener(
+    "keyup",
+    ({ target }) =>
+      (target.value = chunkString(
+        target.value.replace(/\D/g, "").slice(0, 4),
+        2
+      ).join("/"))
+  );
+
+  securitycode.maxLength = 3;
+};
+
+const chunkString = (str, N) => {
+  const result = [];
+  for (let i = 0; i < str.length; i += N) {
+    result.push(str.substr(i, N));
+  }
+  return result;
 };

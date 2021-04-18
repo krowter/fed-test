@@ -27,7 +27,7 @@ main {
   padding: 2rem;
 }
 
-/* SECTIONS */
+/* CARD PREVIEW */
 
 #card-preview {
   display: flex;
@@ -56,11 +56,26 @@ main {
   border-radius: 2rem;
 }
 
+#card-preview__card-header,
+#card-preview__card-footer {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+#card-preview__chip,
+#card-preview__logo {
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
 #card-preview__chip {
   background: white;
-  border-radius: 0.5rem;
   height: 3rem;
-  padding: 0.25rem 0.5rem;
+}
+
+#card-preview__logo {
+  height: 3.5rem;
 }
 
 #card-preview__form {
