@@ -1,24 +1,20 @@
-// for easier lookup and consistent variable naming
-const CARD = {
-  CARD: "card-preview__card",
-  FORM: "card-preview__form",
-  BACKGROUND: "card-preview__card-background",
-  NUMBER: "card-preview__card-number",
-  OWNER: "card-preview__card-owner",
-  EXPIRATION: "card-preview__card-expiration",
-};
-
 // main function
 window.onload = () => {
-  drawCardBackground();
-  setupFormInputs();
+  // for easier lookup and consistent variable naming
+  const CARD = {
+    CARD: "card-preview__card",
+    FORM: "card-preview__form",
+    BACKGROUND: "card-preview__card-background",
+    NUMBER: "card-preview__card-number",
+    OWNER: "card-preview__card-owner",
+    EXPIRATION: "card-preview__card-expiration",
+  };
+
+  drawCardBackground(CARD);
+  setupFormInputs(CARD);
 };
 
-// handle all styling (colors) from css
-const getCSSColor = (variableName) =>
-  getComputedStyle(document.documentElement).getPropertyValue(variableName);
-
-const drawCardBackground = () => {
+const drawCardBackground = (CARD) => {
   const card = document.getElementById(CARD.CARD);
 
   // use canvas to draw the card background
@@ -41,7 +37,7 @@ const drawCardBackground = () => {
   card.style.backgroundImage = `url(${canvas.toDataURL("image/png")})`;
 };
 
-const setupFormInputs = () => {
+const setupFormInputs = (CARD) => {
   const cardOwner = document.getElementById(CARD.OWNER);
   const cardNumber = document.getElementById(CARD.NUMBER);
   const cardExpiration = document.getElementById(CARD.EXPIRATION);
@@ -88,3 +84,7 @@ const chunkString = (str, N) => {
   }
   return result;
 };
+
+// handle all styling (colors) from css
+const getCSSColor = (variableName) =>
+  getComputedStyle(document.documentElement).getPropertyValue(variableName);
