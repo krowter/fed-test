@@ -3,6 +3,7 @@ window.onload = () => {
   // for easier lookup and consistent variable naming
   const CARD = {
     CARD: "card-preview__card",
+    LOGO: "card-preview__logo",
     FORM: "card-preview__form",
     BACKGROUND: "card-preview__card-background",
     NUMBER: "card-preview__card-number",
@@ -11,7 +12,7 @@ window.onload = () => {
   };
 
   drawCardBackground(CARD);
-  setupFormInputs(CARD);
+  setupFormEventHandlers(CARD);
 };
 
 const drawCardBackground = (CARD) => {
@@ -37,10 +38,8 @@ const drawCardBackground = (CARD) => {
   card.style.backgroundImage = `url(${canvas.toDataURL("image/png")})`;
 };
 
-const setupFormInputs = (CARD) => {
+const setupFormEventHandlers = (CARD) => {
   const cardOwner = document.getElementById(CARD.OWNER);
-  const cardNumber = document.getElementById(CARD.NUMBER);
-  const cardExpiration = document.getElementById(CARD.EXPIRATION);
 
   const { owner, number, expiration, securitycode } = document.getElementById(
     CARD.FORM
@@ -54,27 +53,50 @@ const setupFormInputs = (CARD) => {
 
   // 16 digits + 3 separators
   number.maxLength = 19;
-  number.addEventListener("keyup", ({ target }) => {
-    const formatted = chunkString(
-      target.value.replace(/\D/g, "").slice(0, 16),
-      4
-    ).join("-");
-    target.value = formatted;
-    cardNumber.textContent = formatted;
-  });
+  number.addEventListener("keyup", (e) =>
+    handleCardNumberChange(e.target, CARD)
+  );
 
   // 4 digits + 1 separator
   expiration.maxLength = 5;
-  expiration.addEventListener("keyup", ({ target }) => {
-    const formatted = chunkString(
-      target.value.replace(/\D/g, "").slice(0, 4),
-      2
-    ).join("/");
-    target.value = formatted;
-    cardExpiration.textContent = formatted;
-  });
+  expiration.addEventListener("keyup", (e) =>
+    handleCardExpirationChange(e.target, CARD)
+  );
 
   securitycode.maxLength = 3;
+};
+
+const handleCardNumberChange = (target, CARD) => {
+  const cardLogo = document.getElementById(CARD.LOGO);
+  const cardNumber = document.getElementById(CARD.NUMBER);
+
+  const formatted = chunkString(
+    target.value.replace(/\D/g, "").slice(0, 16),
+    4
+  ).join("-");
+  target.value = formatted;
+  cardNumber.textContent = formatted;
+
+  if (target.value.startsWith("4")) {
+    cardLogo.src = "./assets/visa.png";
+    target.style.backgroundImage = `url(./assets/visa.png)`;
+  } else if (target.value.startsWith("5")) {
+    cardLogo.src = "./assets/mastercard.png";
+    target.style.backgroundImage = `url(./assets/mastercard.png)`;
+  } else {
+    cardLogo.src = "";
+  }
+};
+
+const handleCardExpirationChange = (target, CARD) => {
+  const cardExpiration = document.getElementById(CARD.EXPIRATION);
+
+  const formatted = chunkString(
+    target.value.replace(/\D/g, "").slice(0, 4),
+    2
+  ).join("/");
+  target.value = formatted;
+  cardExpiration.textContent = formatted;
 };
 
 const chunkString = (str, N) => {

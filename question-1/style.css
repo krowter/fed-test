@@ -83,6 +83,9 @@ main {
   justify-content: space-between;
   display: flex;
 }
+#card-preview__card-header {
+  align-items: center;
+}
 
 #card-preview__card-expiration-wrapper {
   align-items: center;
@@ -119,7 +122,8 @@ main {
 }
 
 #card-preview__logo {
-  height: 3.5rem;
+  height: 5rem;
+  width: auto;
 }
 
 #card-preview__form {
@@ -145,6 +149,12 @@ main {
 /* add spacing in two-column */
 #card-preview__form section div:nth-child(2) {
   margin-left: 0.5rem;
+}
+
+input#number {
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+  background-size: 4rem;
 }
 
 label,
