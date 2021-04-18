@@ -8,16 +8,9 @@ const CARD = {
   EXPIRATION: "card-preview__card-expiration",
 };
 
+// main function
 window.onload = () => {
-  const initialValues = {
-    NUMBER: "xxxxxxxxxxxxxxxx",
-    OWNER: "xxxxx xxxxx",
-    EXPIRATION: "xxxx",
-  };
-
-  const card = document.getElementById(CARD.CARD);
-
-  drawCardBackground(card);
+  drawCardBackground();
   setupFormInputs();
 };
 
@@ -25,7 +18,9 @@ window.onload = () => {
 const getCSSColor = (variableName) =>
   getComputedStyle(document.documentElement).getPropertyValue(variableName);
 
-const drawCardBackground = (card) => {
+const drawCardBackground = () => {
+  const card = document.getElementById(CARD.CARD);
+
   // use canvas to draw the card background
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -47,31 +42,41 @@ const drawCardBackground = (card) => {
 };
 
 const setupFormInputs = () => {
-  const { number, expiration, securitycode } = document.getElementById(
+  const cardOwner = document.getElementById(CARD.OWNER);
+  const cardNumber = document.getElementById(CARD.NUMBER);
+  const cardExpiration = document.getElementById(CARD.EXPIRATION);
+
+  const { owner, number, expiration, securitycode } = document.getElementById(
     CARD.FORM
   ).elements;
 
+  // 16 is arbitrary, just so the styling won't break
+  owner.maxLength = 16;
+  owner.addEventListener("keyup", ({ target }) => {
+    cardOwner.textContent = target.value.toUpperCase();
+  });
+
   // 16 digits + 3 separators
   number.maxLength = 19;
-  number.addEventListener(
-    "keyup",
-    ({ target }) =>
-      (target.value = chunkString(
-        target.value.replace(/\D/g, "").slice(0, 16),
-        4
-      ).join("-"))
-  );
+  number.addEventListener("keyup", ({ target }) => {
+    const formatted = chunkString(
+      target.value.replace(/\D/g, "").slice(0, 16),
+      4
+    ).join("-");
+    target.value = formatted;
+    cardNumber.textContent = formatted;
+  });
 
   // 4 digits + 1 separator
   expiration.maxLength = 5;
-  expiration.addEventListener(
-    "keyup",
-    ({ target }) =>
-      (target.value = chunkString(
-        target.value.replace(/\D/g, "").slice(0, 4),
-        2
-      ).join("/"))
-  );
+  expiration.addEventListener("keyup", ({ target }) => {
+    const formatted = chunkString(
+      target.value.replace(/\D/g, "").slice(0, 4),
+      2
+    ).join("/");
+    target.value = formatted;
+    cardExpiration.textContent = formatted;
+  });
 
   securitycode.maxLength = 3;
 };

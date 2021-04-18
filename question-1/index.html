@@ -16,38 +16,64 @@
             <img id="card-preview__logo" />
           </div>
           <div id="card-preview__card-body">
-            <span>card number</span>
-            <span id="card-preview__card-number"></span>
+            <span class="card-preview__label">card number</span>
+            <span id="card-preview__card-number">xxxx-xxxx-xxxx-xxxx</span>
           </div>
           <div id="card-preview__card-footer">
             <div>
-              <span>cardholder name</span>
-              <span id="card-preview__card-owner"></span>
+              <span class="card-preview__label">cardholder name</span>
+              <span id="card-preview__card-owner">xxxxx xxxxx</span>
             </div>
             <div>
-              <span>expiration</span>
-              <span>VALID THRU ></span>
-              <span id="card-preview__card-expiration"></span>
+              <span class="card-preview__label">expiration</span>
+              <div id="card-preview__card-expiration-wrapper">
+                <span class="card-preview__label"
+                  >VALID<br />
+                  THRU
+                </span>
+                <span>&#9654;</span>
+                <span id="card-preview__card-expiration">xx/xx</span>
+              </div>
             </div>
           </div>
         </div>
         <form id="card-preview__form">
           <div>
             <label for="owner">Name</label>
-            <input id="owner" name="owner" />
+            <input
+              id="owner"
+              name="owner"
+              aria-placeholder="your name"
+              placeholder="John Smith"
+            />
           </div>
           <div>
             <label for="number">Card Number</label>
-            <input id="number" name="number" />
+            <input
+              id="number"
+              name="number"
+              aria-placeholder="16 digits card number"
+              placeholder="4444-4444-4444-4444"
+            />
           </div>
           <section>
             <div>
               <label for="expiration">Expiration (mm/yy)</label>
-              <input id="expiration" name="expiration" />
+              <input
+                id="expiration"
+                name="expiration"
+                aria-placeholder="2 digits months and years"
+                placeholder="01/10"
+              />
             </div>
             <div>
               <label for="securitycode">Security Code</label>
-              <input id="securitycode" name="securitycode" type="password" />
+              <input
+                id="securitycode"
+                name="securitycode"
+                type="password"
+                aria-placeholder="3 digits security code"
+              />
             </div>
           </section>
         </form>

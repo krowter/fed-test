@@ -41,13 +41,26 @@ main {
 }
 
 #card-preview__card {
+  color: white;
   background: transparent;
   box-shadow: 0 4px 6px black;
+  display: flex;
+  flex-direction: column;
   height: 300px;
+  justify-content: space-between;
   margin: 0 2rem 2rem 0rem;
   padding: 2rem;
   position: relative;
   width: 400px;
+}
+
+.card-preview__label,
+#card-preview__card span {
+  display: block;
+}
+
+.card-preview__label {
+  font-size: 0.75rem;
 }
 
 @media screen and (max-width: 960px) {
@@ -67,9 +80,31 @@ main {
 
 #card-preview__card-header,
 #card-preview__card-footer {
-  align-items: center;
   justify-content: space-between;
   display: flex;
+}
+
+#card-preview__card-expiration-wrapper {
+  align-items: center;
+  display: flex;
+}
+#card-preview__card-expiration-wrapper span {
+  display: block;
+  margin-right: 0.5rem;
+}
+
+#card-preview__card-number {
+  font-size: 1.75rem;
+}
+
+#card-preview__card-expiration {
+  width: 3rem;
+}
+
+#card-preview__card-number,
+#card-preview__card-owner,
+#card-preview__card-expiration {
+  height: 1rem;
 }
 
 #card-preview__chip,
