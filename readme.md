@@ -10,4 +10,46 @@ _Note: Validation for fields are currently **not** implemented, so 20/90 for dat
 
 ### Getting started
 
-Open `index.html` in browser
+Open `question-1/index.html` in browser
+
+## Question-2
+
+Contains a Node.js script to demonstrate the difference between asynchronouse parallel and series executions.
+
+<code>
+// Pseudocode
+
+delay(2000 seconds, "Executed after 2s");
+delay(1000 seconds, "Executed after 1s");
+delay(500 seconds, "Executed after 0.5s");
+delay(100 seconds, "Executed after 0.1s");
+</code>
+
+### Serial Execution
+
+![serial execution](./question-2/assets/series.gif)
+
+Graph to illustrate their timings
+![serial execution graph](./question-2/assets/serial-execution.png)
+
+As expected:
+
+- the first output is printed 2s after the program was ran,
+- the second output is printed 1s after the first has finished running,
+- the third output is printed 0.5s after the second has finished running,
+- the fourth output is printed 0.5s after the third has finished running.
+
+### Parallel Execution
+
+![parallel execution](./question-2/assets/parallel.gif)
+
+Graph to illustrate their timings
+![serial execution graph](./question-2/assets/parallel-execution.png)
+
+Although all four instructions are executed synchronously (i.e. all are executed in order), they **don't wait for the previous one to finished running to start**.
+
+### Getting started
+
+_Make sure you have [node](https://nodejs.org/en/download/) installed first on your computer_
+
+Run `node question-2/script.js`.
