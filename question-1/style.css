@@ -7,10 +7,15 @@ body {
 }
 
 :root {
-  --lightgrey: #dadada;
+  --lightgrey: #eee;
+  --blue: #01a8f3;
+  --darkblue: #0487d0;
 }
 
 /* SITEWIDE */
+* {
+  box-sizing: border-box;
+}
 
 .container {
   margin: 0 auto;
@@ -21,6 +26,8 @@ main {
   background: var(--lightgrey);
   padding: 2rem;
 }
+
+/* SECTIONS */
 
 #card-preview {
   display: flex;
@@ -35,9 +42,25 @@ main {
 }
 
 #card-preview__card {
+  background: transparent;
+  box-shadow: 0 4px 6px black;
   height: 300px;
   margin: 0 1rem 1rem 1rem;
+  padding: 2rem;
+  position: relative;
   width: 400px;
+}
+
+#card-preview__card,
+#card-preview__card-background {
+  border-radius: 2rem;
+}
+
+#card-preview__chip {
+  background: white;
+  border-radius: 0.5rem;
+  height: 3rem;
+  padding: 0.25rem 0.5rem;
 }
 
 #card-preview__form {
