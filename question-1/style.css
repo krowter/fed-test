@@ -8,8 +8,13 @@ body {
 
 :root {
   --lightgrey: #eee;
+  --darkgrey: #444;
   --blue: #01a8f3;
   --darkblue: #0487d0;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* SITEWIDE */
@@ -30,8 +35,19 @@ main {
 /* CARD PREVIEW */
 
 #card-preview {
+  align-items: stretch;
   display: flex;
   justify-content: center;
+}
+
+#card-preview__card {
+  background: transparent;
+  box-shadow: 0 4px 6px black;
+  height: 300px;
+  margin: 0 2rem 2rem 0rem;
+  padding: 2rem;
+  position: relative;
+  width: 400px;
 }
 
 @media screen and (max-width: 960px) {
@@ -39,16 +55,9 @@ main {
     align-items: center;
     flex-direction: column;
   }
-}
-
-#card-preview__card {
-  background: transparent;
-  box-shadow: 0 4px 6px black;
-  height: 300px;
-  margin: 0 1rem 1rem 1rem;
-  padding: 2rem;
-  position: relative;
-  width: 400px;
+  #card-preview__card {
+    margin-left: 2rem;
+  }
 }
 
 #card-preview__card,
@@ -81,4 +90,45 @@ main {
 #card-preview__form {
   height: 300px;
   width: 400px;
+}
+
+/* FORMS */
+#card-preview__form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#card-preview__form section {
+  display: flex;
+}
+
+#card-preview__form section div {
+  flex: 1;
+}
+
+/* add spacing in two-column */
+#card-preview__form section div:nth-child(2) {
+  margin-left: 0.5rem;
+}
+
+label,
+input {
+  display: block;
+  width: 100%;
+}
+
+label {
+  color: var(--darkgrey);
+  margin-bottom: 0.25rem;
+}
+
+input {
+  border: 1px solid lightgrey;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+input:focus {
+  outline: 2px solid lightblue;
 }
