@@ -78,11 +78,13 @@ const handleCardNumberChange = (target, CARD) => {
   cardNumber.textContent = formatted;
 
   if (target.value.startsWith("4")) {
-    cardLogo.src = "./assets/visa.png";
-    target.style.backgroundImage = `url(./assets/visa.png)`;
+    const imgSrc = "./assets/visa.png";
+    cardLogo.src = imgSrc;
+    target.style.backgroundImage = `url(${imgSrc})`;
   } else if (target.value.startsWith("5")) {
-    cardLogo.src = "./assets/mastercard.png";
-    target.style.backgroundImage = `url(./assets/mastercard.png)`;
+    const imgSrc = "./assets/mastercard.png";
+    cardLogo.src = imgSrc;
+    target.style.backgroundImage = `url(${imgSrc})`;
   } else {
     cardLogo.src = "";
   }
